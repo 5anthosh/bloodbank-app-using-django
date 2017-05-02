@@ -1,0 +1,16 @@
+{% extends 'users/base.html' %}
+{% block title %}donate{% endblock %}
+{% block donate %}class ="active"{% endblock %}
+{% block body %}
+    {% load bootstrap3 %}
+    {% if errors %}
+    {% for error in errors %}
+        <div class="panel panel-danger"><div class="panel-heading">{{ error }}</div></div>
+    {% endfor %}
+{% endif %}
+    <form id="donate_form" action="/bloodbank/donate/" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+        {% bootstrap_button 'submit' button_type="submit" button_class="btn-primary" %}
+    </form>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'users/base.html' %}
+{% block title %}search{% endblock %}
+{% block search %}class = "active"{% endblock %}
+{% block body %}
+    {% if error %}
+        <div class="panel panel-danger"><div class="panel-heading">No donar available for given location</div></div>
+    {% endif %}
+<form class="form-horizontal" action="/bloodbank/search/" method="post">
+    {% csrf_token %}
+     <div class="form-group">
+      <label for="bloodgroup" class="control-label col-sm-2">Blood group:</label>
+      <div class='col-sm-2'>
+      <select class="form-control" id="bloodgroup" name="blood_group" required>
+        <option>O Positive</option>
+        <option>O Negative</option>
+        <option>A Positive</option>
+        <option>A Negative</option>
+        <option>B Positive</option>
+        <option>B Negative</option>
+        <option>AB Positive</option>
+        <option>AB Negative</option>
+      </select>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="city">City :</label>
+        <div class="col-sm-2">
+            <input type="text" class="form-control" id="city" name="city" placeholder="city" >
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="submit">      </label>
+        <div class="col-sm-2">
+        <button type="submit" id="submit" class="btn btn-info" value="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

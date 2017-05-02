@@ -1,0 +1,51 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>{% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" media="screen" type="text/css" href="{% static 'users/css/bootstrap.css' %}">
+<!--<style>
+    #bg{
+    background-size: 600px 600px;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+}
+</style>-->
+{% block style %}{% endblock %}
+</head>
+<body>
+<!--<body id="bg" style="background-image: url('{#% static "users/images/Blood-Donor.jpg"%#}')">-->
+<link rel="script" href="{% static 'users/js/jquery-3.1.1.min.js' %}">
+<link rel="script" href="{% static 'users/js/bootstrap.min.js' %}">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/home/">Bloodbank</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li {% block search %}{% endblock %}><a href="/home/search/">search donors</a></li>
+        <li {% block blood %}{% endblock %}><a href="/home/storage/">storage</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    {% block body %}
+    {% endblock %}
+</div>
+
+</body>

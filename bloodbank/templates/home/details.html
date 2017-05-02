@@ -1,0 +1,46 @@
+{% extends 'users/base2.html' %}
+{% block title %}results{% endblock %}
+{% block search %}class = "active"{% endblock %}
+{% block body %}
+    {% load mathfilters %}
+<div class="container">
+{% if list %}
+  <h3>Available donars</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>blood type</th>
+        <th>gender</th>
+        <th>age</th>
+        <th>city</th>
+        <th>contact number</th>
+        <th>Last donated</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for l in list %}
+      <tr>
+          <td>{{ l.first_name }} {{ l.last_name }}</td>
+          <td>{{ l.blood_group }}</td>
+          <td>{{ l.gender }}</td>
+          <td>{{ l.age }}</td>
+          <td>{{ l.city }}</td>
+          <td>{{ l.contact_number }}</td>
+          {% if l.number_month == -1 %}
+          <td>New donar</td>
+          {% elif l.number_month > 12 %}
+              <td>{{ l.number_month|intdiv:12 }} years {{ l.number_month|mod:12 }} months ago </td>
+          {% else %}
+          <td>{{ l.number_month }} months ago</td>
+          {% endif %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <p>Results :{{ number }}</p><br>
+{% else %}
+    <div class="panel panel-danger"><div class="panel-heading">No donar available for given location</div></div>
+{% endif %}
+</div>
+{% endblock %}

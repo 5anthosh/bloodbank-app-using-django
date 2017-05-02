@@ -1,0 +1,24 @@
+{% extends 'users/base.html' %}
+{% block title %}storage{% endblock %}
+{% block blood %}class = "active"{% endblock %}
+{% block body %}
+    <div class="container">
+  <h2>available</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Blood broup</th>
+        <th>available(units)</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for k in detail %}
+      <tr>
+        <td>{{ k.blood_group }}</td>
+        <td>{{ k.units }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>{% block title %}{% endblock %}</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" media="screen" type="text/css" href="{% static 'users/css/bootstrap.css' %}">
+<!--<style>
+    #bg{
+    background-size: 600px 600px;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+}
+</style>-->
+<style>
+    .navbar{
+    background-image: none;
+}
+</style>
+{% block style %}{% endblock %}
+</head>
+<body style="background-color:aliceblue">
+<!--<body id="bg" style="background-image: url('{#% static "users/images/Blood-Donor.jpg"%#}')">-->
+<link rel="script" href="{% static 'users/js/jquery-3.1.1.min.js' %}">
+<link rel="script" href="{% static 'users/js/bootstrap.min.js' %}">
+<nav class="navbar navbar-default">
+<div class="container-fluid">
+<div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/home/">bloodbank</a>
+</div>
+<div class="collapse navbar-collapse" id="myNavbar">
+<ul class="nav navbar-nav">
+<li {% block register %}{% endblock %}><a href="/bloodbank/register/">Register</a></li>
+<li {% block donate %}{% endblock %}><a href="/bloodbank/donate/">Donate</a></li>
+<li {% block account  %}{% endblock %}><a href="/register/">Create account</a></li>
+    <li {% block records  %}{% endblock %}><a href="/bloodbank/records/">Records</a></li>
+<li {% block search  %}{% endblock %}><a href="/bloodbank/">Search</a></li>
+<li {% block blood  %}{% endblock %}><a href="/bloodbank/blood/">Blood available</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<p class="navbar-text"><span class="glyphicon glyphicon-user"></span>  {{ user.first_name }}  {{ user.last_name }}</p>
+<li><a href="/register/logout/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="container">
+  {% block body %}
+  {% endblock %}
+</div>
+</body>
+</html>

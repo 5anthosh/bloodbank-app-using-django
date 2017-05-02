@@ -1,0 +1,18 @@
+{% extends 'users/base.html' %}
+{% block title %}create account{% endblock %}
+{% block account %}class ="active"{% endblock %}
+{% block body %}
+{% load bootstrap3 %}
+{% if registered %}
+    <h1>thank you for registration</h1>
+    <a href={% url 'users:login' %}>login</a>
+{% else %}
+    <h1>Registration for staff members of Blood Bank</h1>
+    <form id="user_form" action="/register/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        {% bootstrap_form_errors user_form %}
+    {% bootstrap_form user_form  %}
+        {% bootstrap_button 'create account' button_type="submit" button_class="btn-primary" %}
+    </form>
+{% endif %}
+{% endblock %}
